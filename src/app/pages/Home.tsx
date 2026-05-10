@@ -1,0 +1,355 @@
+import { 
+  MobileIconCanvas, 
+  ERPIconCanvas, 
+  WebIconCanvas, 
+  CloudIconCanvas, 
+  AIIconCanvas, 
+  SoftwareIconCanvas 
+} from '../components/Home3DIcons';
+import InteractiveGlass from '../components/InteractiveGlass';
+import { motion } from 'motion/react';
+import { Link } from 'react-router';
+import { Code2, Sparkles, Rocket, Shield, Zap, Users } from 'lucide-react';
+
+function AnimatedSphere() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      <motion.div
+        className="relative w-96 h-96"
+        animate={{
+          rotateY: 360,
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        style={{
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {/* Main sphere */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-cyan-600 opacity-80"
+          animate={{
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            boxShadow: '0 0 60px rgba(6, 182, 212, 0.6), inset 0 0 60px rgba(255, 255, 255, 0.3)',
+          }}
+        />
+
+        {/* Inner glow */}
+        <motion.div
+          className="absolute inset-8 rounded-full bg-gradient-to-br from-white/40 to-transparent"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        {/* Orbiting rings */}
+        {[0, 60, 120].map((rotation, i) => (
+          <motion.div
+            key={i}
+            className="absolute inset-0 border-2 border-cyan-300/30 rounded-full"
+            style={{
+              transform: `rotateX(${rotation}deg)`,
+            }}
+            animate={{
+              rotateZ: 360,
+            }}
+            transition={{
+              duration: 10 + i * 2,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+export function Home() {
+  const services = [
+    { icon: Code2, title: 'Web Development', desc: 'Modern responsive websites' },
+    { icon: Sparkles, title: 'ERP Solutions', desc: 'Integrated workflow automation' },
+    { icon: Rocket, title: 'Mobile Apps', desc: 'iOS & Android applications' },
+    { icon: Shield, title: 'Cloud Solutions', desc: 'Scalable infrastructure' },
+    { icon: Zap, title: 'AI & Automation', desc: 'Intelligent workflows' },
+    { icon: Users, title: 'Custom Software', desc: 'Tailored solutions' },
+  ];
+
+  const projects = [
+    {
+      name: 'Government Contractor App',
+      desc: 'Complete contractor management system',
+      tech: 'React, Node.js, MongoDB'
+    },
+    {
+      name: 'MSGCPPL.com (ERP)',
+      desc: 'Enterprise resource planning platform',
+      tech: 'Laravel, MySQL, Vue.js'
+    },
+    {
+      name: 'iDrive Institute Management',
+      desc: 'Driving institute operations platform',
+      tech: 'React, Firebase, Tailwind'
+    },
+  ];
+
+  const stats = [
+    { value: '50+', label: 'Projects Completed' },
+    { value: '20+', label: 'Happy Clients' },
+    { value: '5+', label: 'Years Experience' },
+    { value: '100%', label: 'Client Satisfaction' },
+  ];
+
+  return (
+    <div className="pt-20">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.h1
+                className="text-6xl font-bold mb-6 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-400 bg-clip-text text-transparent">
+                  Transforming Ideas
+                </span>
+                <br />
+                Into Intelligent Digital Solutions
+              </motion.h1>
+
+              <motion.p
+                className="text-xl text-gray-600 mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                RHMR Astute Solutions India delivers cutting-edge software development,
+                AI-powered applications, cloud solutions, ERP systems, and high-performance
+                web experiences for modern businesses.
+              </motion.p>
+
+              <motion.div
+                className="flex gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Link to="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-2xl shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-shadow"
+                  >
+                    Get Started
+                  </motion.button>
+                </Link>
+
+                <Link to="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-white text-cyan-600 rounded-full font-semibold shadow-xl border-2 border-cyan-200 hover:border-cyan-400 transition-colors"
+                  >
+                    Schedule Consultation
+                  </motion.button>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* 3D Animated Sphere */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="h-[500px] relative"
+            >
+              <InteractiveGlass />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-xl"
+              >
+                <div className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-cyan-400 bg-clip-text text-transparent mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Preview */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              What We Do
+            </h2>
+            <p className="text-xl text-gray-600">
+              Comprehensive software solutions for modern businesses
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-100 hover:border-cyan-300 transition-all cursor-pointer"
+              >
+                <div className="mb-6 -mt-4">
+  {service.title === 'Web Development' ? (
+    <WebIconCanvas />
+  ) : service.title === 'ERP Solutions' ? (
+    <ERPIconCanvas />
+  ) : service.title === 'Mobile Apps' ? (
+    <MobileIconCanvas />
+  ) : service.title === 'Cloud Solutions' ? (
+    <CloudIconCanvas />
+  ) : service.title === 'AI & Automation' ? (
+    <AIIconCanvas />
+  ) : service.title === 'Custom Software' ? (
+    <SoftwareIconCanvas />
+  ) : (
+    <service.icon className="w-12 h-12 text-cyan-600 mb-4" />
+  )}
+</div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
+                <p className="text-gray-600">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              Our Signature Projects
+            </h2>
+            <p className="text-xl text-gray-600">
+              Delivering excellence across industries
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03, y: -5 }}
+                className="p-8 bg-gradient-to-br from-white/80 to-cyan-50/80 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-200 hover:border-cyan-400 transition-all"
+              >
+                <h3 className="text-2xl font-bold mb-3 text-gray-800">{project.name}</h3>
+                <p className="text-gray-600 mb-4">{project.desc}</p>
+                <div className="text-sm text-cyan-600 font-medium">{project.tech}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Link to="/portfolio">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-xl"
+              >
+                View All Projects
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 relative">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              Ready To Build Your Next Digital Product?
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Let's transform your vision into reality with cutting-edge technology
+            </p>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-12 py-5 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-bold text-lg shadow-2xl shadow-cyan-500/50"
+              >
+                Start Your Project
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
