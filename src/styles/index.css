@@ -2,29 +2,35 @@
 @import './tailwind.css';
 @import './theme.css';
 
-/* Global Polish: Prevent Horizontal Scroll & Enable Vertical Scroll */
+/* Global Polish: Restore Scroll Mobility */
 html, body {
   /* Restores vertical movement while keeping horizontal locked */
   overflow-y: auto !important;
   overflow-x: hidden !important;
   
-  /* Critical for mobile: allows the browser to recognize swipe-to-scroll */
+  /* Tells the mobile touch engine to prioritize scrolling */
   touch-action: pan-y !important;
   
-  /* Reset height to ensure the document can expand */
+  /* Reset height to ensure the document can expand naturally */
   height: auto !important;
   min-height: 100%;
   width: 100%;
   
   -webkit-font-smoothing: antialiased;
   position: relative;
+  scroll-behavior: smooth;
 }
 
-/* Ensures the React root doesn't trap the height of the document */
+/* Ensures the React root doesn't trap the document height */
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Force all 3D canvases to allow the browser to scroll past them */
+canvas {
+  touch-action: pan-y !important;
 }
 
 /* Surgical Mobile Polish */
@@ -33,21 +39,17 @@ html, body {
     font-size: 14px;
   }
   
-  /* Prevents 3D elements from intercepting touch-scroll gestures */
-  canvas, .canvas-container {
-    max-width: 100vw !important;
-    overflow: hidden;
-    touch-action: pan-y !important;
-  }
-
   .container {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* Ensures 3D containers stay within bounds on small screens */
+  canvas, .canvas-container {
+    max-width: 100vw !important;
+  }
 }
-/* DEBUG MODE: This will put a red border around EVERY element on your site */
-* {
-  outline: 1px solid red !important;
-}
+
+/* Red Debug Outlines Removed for Production */
