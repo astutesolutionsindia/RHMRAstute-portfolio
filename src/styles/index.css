@@ -2,54 +2,35 @@
 @import './tailwind.css';
 @import './theme.css';
 
-/* Global Polish: Restore Scroll Mobility */
+/* Force the browser to recognize vertical scrolling */
 html, body {
-  /* Restores vertical movement while keeping horizontal locked */
   overflow-y: auto !important;
   overflow-x: hidden !important;
-  
-  /* Tells the mobile touch engine to prioritize scrolling */
-  touch-action: pan-y !important;
-  
-  /* Reset height to ensure the document can expand naturally */
   height: auto !important;
   min-height: 100%;
   width: 100%;
-  
+  touch-action: pan-y !important;
   -webkit-font-smoothing: antialiased;
-  position: relative;
   scroll-behavior: smooth;
 }
 
-/* Ensures the React root doesn't trap the document height */
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Force all 3D canvases to allow the browser to scroll past them */
+/* Ensure the 3D canvas never blocks the scroll gesture */
 canvas {
   touch-action: pan-y !important;
 }
 
-/* Surgical Mobile Polish */
+/* Fix for mobile viewports */
 @media (max-width: 768px) {
-  html {
-    font-size: 14px;
-  }
+  html { font-size: 14px; }
   
-  .container {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Ensures 3D containers stay within bounds on small screens */
-  canvas, .canvas-container {
+  /* Ensure no 3D container blocks the screen width */
+  .canvas-container, canvas {
     max-width: 100vw !important;
   }
 }
-
-/* Red Debug Outlines Removed for Production */

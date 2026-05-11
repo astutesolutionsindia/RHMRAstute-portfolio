@@ -11,7 +11,6 @@ function GlassKnot() {
     if (meshRef.current) {
       meshRef.current.rotation.x += 0.005;
       meshRef.current.rotation.y += 0.005;
-      
       const targetScale = hovered ? 1.1 : 1;
       meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
     }
@@ -22,7 +21,6 @@ function GlassKnot() {
       ref={meshRef}
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
-      scale={1}
     >
       <torusKnotGeometry args={[1.2, 0.4, 256, 64]} />
       <meshPhysicalMaterial 
@@ -40,17 +38,17 @@ function GlassKnot() {
 
 export default function InteractiveGlass() {
   return (
-    /* We use inset-0 to prevent the touch-zone from bleeding over your text and buttons */
+    /* 1. Changed inset-[-100px] to inset-0 to stop it from covering the text/buttons */
     <div className="absolute inset-0 z-10 cursor-grab active:cursor-grabbing">
       <Canvas 
         camera={{ position: [0, 0, 8.5], fov: 45 }}
-        /* This style is the 'Master Key'—it allows vertical scrolling on mobile */
+        /* 2. Allows vertical scrolling while keeping the 3D active */
         style={{ touchAction: 'pan-y' }}
       >
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         
-        {/* global={false} ensures rotation only happens when the object is directly touched */}
+        {/* 3. Removed 'global'! Now rotation only happens if you touch the object area. */}
         <PresentationControls 
           global={false} 
           rotation={[0, 0.3, 0]} 
