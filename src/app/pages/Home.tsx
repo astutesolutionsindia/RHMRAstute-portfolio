@@ -7,11 +7,11 @@ import {
   SoftwareIconCanvas 
 } from '../components/Home3DIcons';
 import InteractiveGlass from '../components/InteractiveGlass';
-import { motion } from 'framer-motion'; // <--- Fixed import for consistency
-import { Link } from 'react-router-dom'; // <--- FIXED THIS IMPORT
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Code2, Sparkles, Rocket, Shield, Zap, Users } from 'lucide-react';
 
-export default function Home() { // <--- Added 'default' export if your App.tsx relies on it!
+export default function Home() {
   const services = [
     { icon: Code2, title: 'Web Development', desc: 'Modern responsive websites' },
     { icon: Sparkles, title: 'ERP Solutions', desc: 'Integrated workflow automation' },
@@ -57,7 +57,6 @@ export default function Home() { // <--- Added 'default' export if your App.tsx 
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              {/* Scaled text for mobile */}
               <motion.h1
                 className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
@@ -71,7 +70,6 @@ export default function Home() { // <--- Added 'default' export if your App.tsx 
                 Into Intelligent Digital Solutions
               </motion.h1>
 
-              {/* Scaled text for mobile */}
               <motion.p
                 className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
@@ -83,7 +81,6 @@ export default function Home() { // <--- Added 'default' export if your App.tsx 
                 web experiences for modern businesses.
               </motion.p>
 
-              {/* Stacked buttons for mobile */}
               <motion.div
                 className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -112,12 +109,12 @@ export default function Home() { // <--- Added 'default' export if your App.tsx 
               </motion.div>
             </motion.div>
 
-            {/* 3D Animated Sphere */}
+            {/* 3D Animated Sphere - Added touch-pan-y for scroll reliability */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
-              className="h-[400px] md:h-[500px] relative"
+              className="h-[400px] md:h-[500px] relative touch-pan-y"
             >
               <InteractiveGlass />
             </motion.div>
@@ -177,7 +174,7 @@ export default function Home() { // <--- Added 'default' export if your App.tsx 
                 whileHover={{ scale: 1.05, y: -10 }}
                 className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-100 hover:border-cyan-300 transition-all cursor-pointer flex flex-col items-center text-center"
               >
-                <div className="mb-6 -mt-4 w-full flex justify-center">
+                <div className="mb-6 -mt-4 w-full flex justify-center touch-pan-y">
                   {service.title === 'Web Development' ? (
                     <WebIconCanvas />
                   ) : service.title === 'ERP Solutions' ? (
