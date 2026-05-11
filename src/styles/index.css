@@ -47,3 +47,7 @@ html, body {
     margin-right: auto;
   }
 }
+/* DEBUG MODE: This will put a red border around EVERY element on your site */
+* {
+  outline: 1px solid red !important;
+}
