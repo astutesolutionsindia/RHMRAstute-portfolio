@@ -15,6 +15,7 @@ const bubblyMaterial = (hovered: boolean, color: string) => (
     clearcoatRoughness={0.1}
   />
 );
+
 // --------------------------------------------------------
 // 1. MISSION (Bubbly Interactive Target & Arrow) - BIG CARD
 // --------------------------------------------------------
@@ -176,6 +177,7 @@ function CrystalVision() {
     </group>
   );
 }
+
 // --------------------------------------------------------
 // 3. INNOVATION (Clickable Bubbly Lightbulb)
 // --------------------------------------------------------
@@ -241,6 +243,7 @@ function BubblyBulb() {
     </group>
   );
 }
+
 // --------------------------------------------------------
 // 4. INTEGRITY (Bouncy Soft Diamond)
 // --------------------------------------------------------
@@ -333,7 +336,8 @@ function DancingBubbles() {
 
 // --- Canvas Wrappers to Export ---
 const CanvasWrapper = ({ children, big = false }: { children: React.ReactNode, big?: boolean }) => (
-  <div className={`w-full ${big ? 'h-48' : 'h-32'} cursor-pointer z-10 relative`}>
+  // ADDED touch-none here!
+  <div className={`w-full ${big ? 'h-48' : 'h-32'} cursor-pointer z-10 relative touch-none`}>
     <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 10, 5]} intensity={1.5} />

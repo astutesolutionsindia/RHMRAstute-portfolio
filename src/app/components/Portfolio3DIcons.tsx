@@ -194,7 +194,8 @@ function IDriveLogo() {
 // --- Canvas Wrappers ---
 // Making them slightly larger (h-40) to fit inside the portfolio's layout style
 const CanvasWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="w-32 h-32 cursor-pointer z-10 relative -ml-4 -mt-4">
+  // ADDED touch-none here!
+  <div className="w-32 h-32 cursor-pointer z-10 relative -ml-4 -mt-4 touch-none">
     <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 10, 5]} intensity={1.5} />

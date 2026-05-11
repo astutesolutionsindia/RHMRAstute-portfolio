@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion'; // <--- Fixed import
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
 
@@ -67,18 +67,19 @@ export function Contact() {
   ];
 
   return (
-    <div className="pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <div className="pt-32 pb-20 overflow-x-hidden"> {/* Prevent horizontal scrolling */}
+      <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          {/* Scaled text for mobile */}
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent px-2">
             Let's Build Something Amazing
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Ready to transform your vision into reality? Get in touch with us today.
           </p>
         </motion.div>
@@ -88,9 +89,9 @@ export function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200 relative overflow-hidden"
+            className="p-6 md:p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200 relative overflow-hidden"
           >
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">Request a Quote</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Request a Quote</h2>
             
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
@@ -109,7 +110,7 @@ export function Contact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all text-sm md:text-base"
                       required
                     />
                   </div>
@@ -121,19 +122,20 @@ export function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all text-sm md:text-base"
                       required
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  {/* Stack dropdowns on mobile, side-by-side on desktop */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Budget Range</label>
                       <select
                         name="budget"
                         value={formData.budget}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all text-sm md:text-base"
                       >
                         <option value="">Select budget</option>
                         <option value="<10k">Less than ₹10,000</option>
@@ -149,7 +151,7 @@ export function Contact() {
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 transition-all text-sm md:text-base"
                       >
                         <option value="">Select type</option>
                         <option value="web">Web Development</option>
@@ -167,7 +169,7 @@ export function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 resize-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-cyan-200 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200 bg-white/50 resize-none transition-all text-sm md:text-base"
                       required
                     />
                   </div>
@@ -176,7 +178,7 @@ export function Contact() {
                     type="submit"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-xl font-semibold shadow-xl flex items-center justify-center gap-2 hover:shadow-cyan-500/30 transition-shadow"
+                    className="w-full px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-xl font-semibold shadow-xl flex items-center justify-center gap-2 hover:shadow-cyan-500/30 transition-shadow text-sm md:text-base"
                   >
                     <Send className="w-5 h-5" />
                     Send Message
@@ -187,13 +189,13 @@ export function Contact() {
                   key="success"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="h-full flex flex-col items-center justify-center text-center py-20"
+                  className="h-[400px] flex flex-col items-center justify-center text-center py-10"
                 >
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
                     <CheckCircle className="w-10 h-10 text-green-500" />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-800 mb-2">Message Sent!</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Message Sent!</h3>
+                  <p className="text-gray-600 px-4">
                     Thank you for reaching out. Our team will get back to you within 24 hours.
                   </p>
                 </motion.div>
@@ -207,14 +209,14 @@ export function Contact() {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-8"
           >
-            <div className="p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl">
-              <h2 className="text-3xl font-bold mb-6 text-gray-800">Get in Touch</h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+            <div className="p-6 md:p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Get in Touch</h2>
+              <p className="text-gray-600 mb-8 leading-relaxed text-sm md:text-base">
                 Let's discuss your next software project. Our team is ready to help you
                 transform your ideas into powerful digital solutions.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.a
                     key={index}
@@ -225,12 +227,13 @@ export function Contact() {
                     whileHover={{ scale: 1.02, x: 5 }}
                     className="flex items-center gap-4 p-4 bg-white/60 rounded-xl hover:bg-white/90 transition-all cursor-pointer shadow-sm hover:shadow-md"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-600 to-cyan-400 flex items-center justify-center shadow-lg">
-                      <info.icon className="w-6 h-6 text-white" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-r from-cyan-600 to-cyan-400 flex items-center justify-center shadow-lg shrink-0">
+                      <info.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </div>
-                    <div>
-                      <div className="text-sm text-gray-500">{info.label}</div>
-                      <div className="font-semibold text-gray-800">{info.value}</div>
+                    {/* truncate class ensures long emails don't break the layout on small screens */}
+                    <div className="min-w-0 flex-1"> 
+                      <div className="text-xs md:text-sm text-gray-500">{info.label}</div>
+                      <div className="font-semibold text-gray-800 text-sm md:text-base truncate">{info.value}</div>
                     </div>
                   </motion.a>
                 ))}
@@ -245,12 +248,12 @@ export function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="block p-8 bg-gradient-to-r from-green-500 to-green-400 rounded-3xl shadow-2xl text-white cursor-pointer"
+              className="block p-6 md:p-8 bg-gradient-to-r from-green-500 to-green-400 rounded-3xl shadow-2xl text-white cursor-pointer"
             >
-              <MessageSquare className="w-12 h-12 mb-4" />
-              <h3 className="text-2xl font-bold mb-2">Chat on WhatsApp</h3>
-              <p className="mb-4 text-green-50">Get instant responses to your queries directly on your phone.</p>
-              <div className="inline-block px-6 py-3 bg-white text-green-600 rounded-full font-semibold shadow-md">
+              <MessageSquare className="w-10 h-10 md:w-12 md:h-12 mb-4" />
+              <h3 className="text-xl md:text-2xl font-bold mb-2">Chat on WhatsApp</h3>
+              <p className="mb-4 text-green-50 text-sm md:text-base">Get instant responses to your queries directly on your phone.</p>
+              <div className="inline-block px-6 py-3 bg-white text-green-600 rounded-full font-semibold shadow-md text-sm md:text-base">
                 Start Chat
               </div>
             </motion.a>
@@ -263,11 +266,12 @@ export function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="p-4 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
+          className="p-3 md:p-4 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
         >
-          <div className="w-full h-[400px] rounded-2xl overflow-hidden relative">
+          {/* Adjusted height for mobile screens */}
+          <div className="w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden relative">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3396.1633519896!2d74.00424599999999!3d33.5315525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e1092499ffa89d%3A0x6567a6d4697e7f1!2sJammu%20and%20Kashmir!5e0!3m2!1sen!2sin!4v1715400000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105952.17937409214!2d74.7925184288825!3d34.08638059082596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f98f987f62d%3A0x673db2f2eb68095b!2sSrinagar%2C%20Jammu%20and%20Kashmir!5e0!3m2!1sen!2sin!4v1715694205562!5m2!1sen!2sin" 
               className="absolute top-0 left-0 w-full h-full border-0" 
               allowFullScreen 
               loading="lazy" 

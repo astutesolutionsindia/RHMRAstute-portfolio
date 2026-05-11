@@ -14,11 +14,16 @@ export function FloatingBubbles() {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
 
   useEffect(() => {
-    const newBubbles: Bubble[] = Array.from({ length: 20 }, (_, i) => ({
+    // Detect mobile to reduce bubble count (saves battery and improves 3D performance)
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
+    const bubbleCount = isMobile ? 8 : 20;
+
+    const newBubbles: Bubble[] = Array.from({ length: bubbleCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 100 + 50,
+      // Make them slightly smaller on mobile so they don't crowd the screen
+      size: Math.random() * (isMobile ? 60 : 100) + (isMobile ? 30 : 50),
       duration: Math.random() * 10 + 15,
       delay: Math.random() * 5,
     }));

@@ -1,4 +1,26 @@
 @import 'tailwindcss' source(none);
 @source '../**/*.{js,ts,jsx,tsx}';
 
+/* Tailwind 4.0 Configuration Layer */
+@layer theme {
+  :root {
+    /* Safe Area Utilities for Mobile Notches */
+    --padding-safe-top: env(safe-area-inset-top);
+    --padding-safe-bottom: env(safe-area-inset-bottom);
+    
+    /* Global Brand Colors (matching your 8-hour-old look) */
+    --color-brand-cyan: #06b6d4;
+    --color-brand-blue: #2563eb;
+  }
+}
+
+@layer base {
+  /* Prevent 'pull-to-refresh' on mobile from breaking 3D interactions */
+  body {
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Animations Import */
 @import 'tw-animate-css';

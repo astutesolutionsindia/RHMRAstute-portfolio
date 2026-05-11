@@ -28,7 +28,6 @@ function GlassKnot() {
       {/* The complex knot shape */}
       <torusKnotGeometry args={[1.2, 0.4, 256, 64]} />
       {/* The magical glass material */}
-      {/* The magical glass material */}
       <meshPhysicalMaterial 
         color={hovered ? "#0891b2" : "#a5f3fc"} // Deep cyan when hovered, soft icy-cyan when resting
         transmission={0.85} // Dropped from 1.0 to 0.85 so it catches the light better
@@ -44,7 +43,8 @@ function GlassKnot() {
 
 export default function InteractiveGlass() {
   return (
-    <div className="absolute inset-[-100px] z-10 cursor-grab active:cursor-grabbing">
+    // Added touch-none here so mobile users can grab and spin the glass without scrolling the page!
+    <div className="absolute inset-[-100px] z-10 cursor-grab active:cursor-grabbing touch-none">
       <Canvas camera={{ position: [0, 0, 8.5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />

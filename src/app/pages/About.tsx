@@ -6,7 +6,7 @@ import {
   ExcellenceIcon, 
   SuccessIcon 
 } from '../components/About3DIcons';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion'; // <--- Changed from 'motion/react' for consistency
 import { Target, Eye, Award, Users, Lightbulb, Shield } from 'lucide-react';
 
 export function About() {
@@ -18,18 +18,20 @@ export function About() {
   ];
 
   return (
-    <div className="pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <div className="pt-32 pb-20 overflow-x-hidden"> {/* Added overflow-x-hidden to prevent horizontal scrolling on mobile */}
+      <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="text-center mb-16 md:mb-20"
         >
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          {/* Scaled heading for mobile */}
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent px-2">
             Innovating Digital Excellence
           </h1>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          {/* Scaled paragraph for mobile */}
+          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             RHMR Astute Solutions India is a technology-driven software development company
             focused on creating scalable, secure, and intelligent digital solutions for
             startups, enterprises, and government organizations.
@@ -37,20 +39,20 @@ export function About() {
         </motion.div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 gap-8 mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, y: -5 }}
-            className="p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
+            className="p-8 md:p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
           >
             {/* 3D Mission Icon injected here */}
-            <div className="-mt-8 mb-2">
+            <div className="-mt-8 mb-2 flex justify-center w-full">
               <MissionIcon />
             </div>
-            <h2 className="text-3xl font-bold mb-4 text-gray-800">Our Mission</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800 text-center md:text-left">Our Mission</h2>
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed text-center md:text-left">
               To empower businesses through innovative and reliable software solutions
               that drive efficiency, growth, and digital transformation.
             </p>
@@ -61,14 +63,14 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, y: -5 }}
-            className="p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
+            className="p-8 md:p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
           >
             {/* 3D Vision Icon injected here */}
-            <div className="-mt-8 mb-2">
+            <div className="-mt-8 mb-2 flex justify-center w-full">
               <VisionIcon />
             </div>
-            <h2 className="text-3xl font-bold mb-4 text-gray-800">Our Vision</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800 text-center md:text-left">Our Vision</h2>
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed text-center md:text-left">
               To become a globally trusted technology partner known for innovation,
               quality, and digital excellence in every project we undertake.
             </p>
@@ -80,12 +82,14 @@ export function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-16 md:mb-20"
         >
-          <h2 className="text-5xl font-bold text-center mb-12 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          {/* Scaled heading for mobile */}
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
             Core Values
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Ensure grid falls back to 1 column on smallest screens, 2 on medium, 4 on large */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <motion.div
                 key={index}
@@ -94,10 +98,10 @@ export function About() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl text-center border border-cyan-100 hover:border-cyan-300 transition-all"
+                className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl text-center border border-cyan-100 hover:border-cyan-300 transition-all flex flex-col items-center"
               >
                 {/* 3D Core Value Icons switchboard injected here */}
-                <div className="-mt-6 mb-2">
+                <div className="-mt-6 mb-2 w-full flex justify-center overflow-hidden max-w-[150px]">
                   {value.title === 'Innovation' ? (
                     <InnovationIcon />
                   ) : value.title === 'Integrity' ? (
@@ -111,7 +115,7 @@ export function About() {
                   )}
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">{value.title}</h3>
-                <p className="text-gray-600">{value.desc}</p>
+                <p className="text-gray-600 text-sm md:text-base">{value.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -122,12 +126,13 @@ export function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto p-12 bg-gradient-to-br from-white/80 to-cyan-50/80 backdrop-blur-sm rounded-3xl shadow-2xl"
+          className="max-w-4xl mx-auto p-8 md:p-12 bg-gradient-to-br from-white/80 to-cyan-50/80 backdrop-blur-sm rounded-3xl shadow-2xl mx-4 md:mx-auto"
         >
-          <h2 className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          {/* Scaled heading for mobile */}
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
             Our Story
           </h2>
-          <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+          <div className="space-y-6 text-base md:text-lg text-gray-700 leading-relaxed">
             <p>
               Founded with a vision to bridge the gap between technology and business needs,
               RHMR Astute Solutions India has grown from a small team of passionate developers

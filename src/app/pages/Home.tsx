@@ -7,81 +7,11 @@ import {
   SoftwareIconCanvas 
 } from '../components/Home3DIcons';
 import InteractiveGlass from '../components/InteractiveGlass';
-import { motion } from 'motion/react';
-import { Link } from 'react-router';
+import { motion } from 'framer-motion'; // <--- Fixed import for consistency
+import { Link } from 'react-router-dom'; // <--- FIXED THIS IMPORT
 import { Code2, Sparkles, Rocket, Shield, Zap, Users } from 'lucide-react';
 
-function AnimatedSphere() {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      <motion.div
-        className="relative w-96 h-96"
-        animate={{
-          rotateY: 360,
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        style={{
-          transformStyle: "preserve-3d",
-        }}
-      >
-        {/* Main sphere */}
-        <motion.div
-          className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-cyan-600 opacity-80"
-          animate={{
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            boxShadow: '0 0 60px rgba(6, 182, 212, 0.6), inset 0 0 60px rgba(255, 255, 255, 0.3)',
-          }}
-        />
-
-        {/* Inner glow */}
-        <motion.div
-          className="absolute inset-8 rounded-full bg-gradient-to-br from-white/40 to-transparent"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Orbiting rings */}
-        {[0, 60, 120].map((rotation, i) => (
-          <motion.div
-            key={i}
-            className="absolute inset-0 border-2 border-cyan-300/30 rounded-full"
-            style={{
-              transform: `rotateX(${rotation}deg)`,
-            }}
-            animate={{
-              rotateZ: 360,
-            }}
-            transition={{
-              duration: 10 + i * 2,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-export function Home() {
+export default function Home() { // <--- Added 'default' export if your App.tsx relies on it!
   const services = [
     { icon: Code2, title: 'Web Development', desc: 'Modern responsive websites' },
     { icon: Sparkles, title: 'ERP Solutions', desc: 'Integrated workflow automation' },
@@ -127,8 +57,9 @@ export function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
+              {/* Scaled text for mobile */}
               <motion.h1
-                className="text-6xl font-bold mb-6 leading-tight"
+                className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -140,8 +71,9 @@ export function Home() {
                 Into Intelligent Digital Solutions
               </motion.h1>
 
+              {/* Scaled text for mobile */}
               <motion.p
-                className="text-xl text-gray-600 mb-8 leading-relaxed"
+                className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -151,27 +83,28 @@ export function Home() {
                 web experiences for modern businesses.
               </motion.p>
 
+              {/* Stacked buttons for mobile */}
               <motion.div
-                className="flex gap-4"
+                className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <Link to="/contact">
+                <Link to="/contact" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.05, y: -3 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-2xl shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-shadow"
+                    className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-2xl shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-shadow"
                   >
                     Get Started
                   </motion.button>
                 </Link>
 
-                <Link to="/contact">
+                <Link to="/contact" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.05, y: -3 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 bg-white text-cyan-600 rounded-full font-semibold shadow-xl border-2 border-cyan-200 hover:border-cyan-400 transition-colors"
+                    className="w-full sm:w-auto px-8 py-4 bg-white text-cyan-600 rounded-full font-semibold shadow-xl border-2 border-cyan-200 hover:border-cyan-400 transition-colors"
                   >
                     Schedule Consultation
                   </motion.button>
@@ -184,7 +117,7 @@ export function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
-              className="h-[500px] relative"
+              className="h-[400px] md:h-[500px] relative"
             >
               <InteractiveGlass />
             </motion.div>
@@ -195,7 +128,7 @@ export function Home() {
       {/* Stats Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -206,10 +139,10 @@ export function Home() {
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-xl"
               >
-                <div className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-cyan-400 bg-clip-text text-transparent mb-2">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-600 to-cyan-400 bg-clip-text text-transparent mb-2">
                   {stat.value}
                 </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-gray-600 font-medium text-sm md:text-base">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -225,10 +158,10 @@ export function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               What We Do
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg md:text-xl text-gray-600">
               Comprehensive software solutions for modern businesses
             </p>
           </motion.div>
@@ -242,27 +175,27 @@ export function Home() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05, y: -10 }}
-                className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-100 hover:border-cyan-300 transition-all cursor-pointer"
+                className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-100 hover:border-cyan-300 transition-all cursor-pointer flex flex-col items-center text-center"
               >
-                <div className="mb-6 -mt-4">
-  {service.title === 'Web Development' ? (
-    <WebIconCanvas />
-  ) : service.title === 'ERP Solutions' ? (
-    <ERPIconCanvas />
-  ) : service.title === 'Mobile Apps' ? (
-    <MobileIconCanvas />
-  ) : service.title === 'Cloud Solutions' ? (
-    <CloudIconCanvas />
-  ) : service.title === 'AI & Automation' ? (
-    <AIIconCanvas />
-  ) : service.title === 'Custom Software' ? (
-    <SoftwareIconCanvas />
-  ) : (
-    <service.icon className="w-12 h-12 text-cyan-600 mb-4" />
-  )}
-</div>
+                <div className="mb-6 -mt-4 w-full flex justify-center">
+                  {service.title === 'Web Development' ? (
+                    <WebIconCanvas />
+                  ) : service.title === 'ERP Solutions' ? (
+                    <ERPIconCanvas />
+                  ) : service.title === 'Mobile Apps' ? (
+                    <MobileIconCanvas />
+                  ) : service.title === 'Cloud Solutions' ? (
+                    <CloudIconCanvas />
+                  ) : service.title === 'AI & Automation' ? (
+                    <AIIconCanvas />
+                  ) : service.title === 'Custom Software' ? (
+                    <SoftwareIconCanvas />
+                  ) : (
+                    <service.icon className="w-12 h-12 text-cyan-600 mb-4" />
+                  )}
+                </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">{service.title}</h3>
-                <p className="text-gray-600">{service.desc}</p>
+                <p className="text-gray-600 text-sm md:text-base">{service.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -278,10 +211,10 @@ export function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               Our Signature Projects
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg md:text-xl text-gray-600">
               Delivering excellence across industries
             </p>
           </motion.div>
@@ -298,7 +231,7 @@ export function Home() {
                 className="p-8 bg-gradient-to-br from-white/80 to-cyan-50/80 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-200 hover:border-cyan-400 transition-all"
               >
                 <h3 className="text-2xl font-bold mb-3 text-gray-800">{project.name}</h3>
-                <p className="text-gray-600 mb-4">{project.desc}</p>
+                <p className="text-gray-600 mb-4 text-sm md:text-base">{project.desc}</p>
                 <div className="text-sm text-cyan-600 font-medium">{project.tech}</div>
               </motion.div>
             ))}
@@ -314,7 +247,7 @@ export function Home() {
               <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-xl"
+                className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-xl w-full sm:w-auto"
               >
                 View All Projects
               </motion.button>
@@ -332,17 +265,17 @@ export function Home() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               Ready To Build Your Next Digital Product?
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-lg md:text-xl text-gray-600 mb-8">
               Let's transform your vision into reality with cutting-edge technology
             </p>
             <Link to="/contact">
               <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-12 py-5 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-bold text-lg shadow-2xl shadow-cyan-500/50"
+                className="px-12 py-5 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-bold text-lg shadow-2xl shadow-cyan-500/50 w-full sm:w-auto"
               >
                 Start Your Project
               </motion.button>

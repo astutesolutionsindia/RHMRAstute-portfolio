@@ -1,5 +1,5 @@
 import { GovContractorIcon } from '../components/Portfolio3DIcons';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion'; // <--- Fixed import for consistency
 import { ExternalLink } from 'lucide-react';
 
 export function Portfolio() {
@@ -39,18 +39,19 @@ export function Portfolio() {
   const categories = ['All', 'Web Apps', 'Mobile Apps', 'ERP Systems', 'E-Commerce'];
 
   return (
-    <div className="pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <div className="pt-32 pb-20 overflow-x-hidden"> {/* Prevent horizontal scrolling */}
+      <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          {/* Scaled text for mobile */}
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent px-2">
             Our Work Speaks Through Innovation
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Explore our portfolio of successful projects across various industries
           </p>
         </motion.div>
@@ -59,14 +60,14 @@ export function Portfolio() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-wrap justify-center gap-4 mb-16"
+          className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16"
         >
           {categories.map((category, index) => (
             <motion.button
               key={index}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 bg-white/70 backdrop-blur-sm rounded-full font-medium text-gray-700 hover:bg-gradient-to-r hover:from-cyan-600 hover:to-cyan-400 hover:text-white shadow-lg transition-all border border-cyan-200"
+              className="px-4 py-2 md:px-6 md:py-2 bg-white/70 backdrop-blur-sm rounded-full text-sm md:text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-cyan-600 hover:to-cyan-400 hover:text-white shadow-lg transition-all border border-cyan-200"
             >
               {category}
             </motion.button>
@@ -83,35 +84,35 @@ export function Portfolio() {
               transition={{ delay: index * 0.2 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.01, y: -5 }}
-              className="p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200 hover:border-cyan-400 transition-all"
+              className="p-6 md:p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200 hover:border-cyan-400 transition-all"
             >
               <div className="grid lg:grid-cols-3 gap-8">
                 {/* Project Logo & Info */}
-                <div className="lg:col-span-1">
+                <div className="lg:col-span-1 text-center lg:text-left">
                   
                   {/* --- Static Logos with CSS Hover Effects --- */}
-                  <div className="mb-6 h-28 flex items-center justify-start">
+                  <div className="mb-6 h-28 flex items-center justify-center lg:justify-start">
                     {project.name === 'MSGCPPL.com (ERP)' ? (
                       <img 
-                        src="/Logo1 (1).jpg" 
+                        src="/msgcppl-logo.jpg" /* <-- Re-applied clean Vercel path */
                         alt="MSGCPPL Logo" 
                         className="w-24 h-24 object-contain rounded-full shadow-md transition-transform duration-300 hover:scale-110 hover:shadow-xl cursor-pointer"
                       />
                     ) : project.name === 'iDrive Institute Management' ? (
                       <img 
-                        src="/iDrive_page-0001.jpg" 
+                        src="/idrive-logo.jpg" /* <-- Re-applied clean Vercel path */
                         alt="iDrive Logo" 
                         className="w-28 h-28 object-contain transition-transform duration-300 hover:scale-110 drop-shadow-md hover:drop-shadow-xl cursor-pointer"
                       />
                     ) : (
                       // Fallback Placeholder for Gov App
-                      <div className="w-full">
+                      <div className="w-full flex justify-center lg:justify-start">
                          <GovContractorIcon />
                       </div>
                     )}
                   </div>
 
-                  <h3 className="text-3xl font-bold mb-2 text-gray-800">{project.name}</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2 text-gray-800">{project.name}</h3>
                   <div className="inline-block px-4 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium mb-4">
                     {project.category}
                   </div>
@@ -119,44 +120,45 @@ export function Portfolio() {
 
                 {/* Project Details */}
                 <div className="lg:col-span-2 space-y-6">
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed text-center lg:text-left">
                     {project.description}
                   </p>
 
-                  <div>
+                  <div className="text-center lg:text-left">
                     <h4 className="font-bold text-gray-800 mb-2">Technologies Used:</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap justify-center lg:justify-start gap-2">
                       {project.technologies.map((tech, idx) => (
-                        <span key={idx} className="px-4 py-1 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full text-sm font-medium">
+                        <span key={idx} className="px-3 py-1 md:px-4 md:py-1 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full text-xs md:text-sm font-medium">
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="p-4 bg-cyan-50/80 rounded-xl">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="p-4 bg-cyan-50/80 rounded-xl text-center sm:text-left">
                       <h4 className="font-bold text-gray-800 mb-1">Challenge Solved:</h4>
                       <p className="text-gray-600 text-sm">{project.challenges}</p>
                     </div>
-                    <div className="p-4 bg-cyan-50/80 rounded-xl">
+                    <div className="p-4 bg-cyan-50/80 rounded-xl text-center sm:text-left">
                       <h4 className="font-bold text-gray-800 mb-1">Results Achieved:</h4>
                       <p className="text-gray-600 text-sm">{project.results}</p>
                     </div>
                   </div>
 
-                  {/* --- Updated from motion.button to motion.a --- */}
-                  <motion.a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    View Case Study
-                  </motion.a>
+                  <div className="flex justify-center lg:justify-start">
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      View Case Study
+                    </motion.a>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -168,19 +170,19 @@ export function Portfolio() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 text-center"
+          className="mt-16 md:mt-20 text-center"
         >
-          <div className="p-12 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-xl">
-            <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          <div className="p-8 md:p-12 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-xl">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               50+ More Projects Completed
             </h3>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-base md:text-lg text-gray-600 mb-6">
               From e-commerce platforms to custom CRM systems, we've delivered excellence across industries
             </p>
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-xl"
+              className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white rounded-full font-semibold shadow-xl w-full sm:w-auto"
             >
               Request Full Portfolio
             </motion.button>

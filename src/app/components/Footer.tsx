@@ -1,5 +1,5 @@
-import { Link } from 'react-router';
-import { motion } from 'motion/react';
+import { Link } from 'react-router-dom'; // <--- FIXED THIS IMPORT
+import { motion } from 'framer-motion'; // <--- Updated to use framer-motion directly for consistency
 import { Facebook, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
 
 export function Footer() {
@@ -72,7 +72,7 @@ export function Footer() {
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-300 hover:text-cyan-400 transition-colors"
+                    className="text-gray-300 hover:text-cyan-400 transition-colors block py-1"
                   >
                     {link.label}
                   </Link>
@@ -91,7 +91,7 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-2">
               {services.map((service, index) => (
-                <li key={index} className="text-gray-300">
+                <li key={index} className="text-gray-300 block py-1">
                   {service}
                 </li>
               ))}
@@ -108,7 +108,7 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-4">Technologies</h4>
             <ul className="space-y-2">
               {technologies.map((tech, index) => (
-                <li key={index} className="text-gray-300">
+                <li key={index} className="text-gray-300 block py-1">
                   {tech}
                 </li>
               ))}
@@ -121,7 +121,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 p-8 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 rounded-2xl border border-cyan-700/30"
+          className="mb-12 p-6 md:p-8 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 rounded-2xl border border-cyan-700/30"
         >
           <div className="max-w-2xl mx-auto text-center">
             <Mail className="w-12 h-12 mx-auto mb-4 text-cyan-400" />
@@ -129,16 +129,16 @@ export function Footer() {
             <p className="text-gray-300 mb-6">
               Stay updated with the latest tech trends and our project insights
             </p>
-            <div className="flex gap-2 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-cyan-700/50 focus:border-cyan-400 focus:outline-none text-white placeholder-gray-400"
+                className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-cyan-700/50 focus:border-cyan-400 focus:outline-none text-white placeholder-gray-400 w-full"
               />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-full font-semibold"
+                className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-full font-semibold w-full sm:w-auto mt-2 sm:mt-0"
               >
                 Subscribe
               </motion.button>

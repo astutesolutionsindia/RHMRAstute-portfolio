@@ -94,6 +94,7 @@ function MobileApp() {
     </group>
   );
 }
+
 // 3. ERP SOLUTIONS (Jelly Disks)
 function ErpSolutions() {
   const groupRef = useRef<THREE.Group>(null);
@@ -301,7 +302,8 @@ function WebApp() {
 
 // --- Canvas Wrapper ---
 const CanvasWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="w-full h-32 cursor-pointer z-10 relative">
+  // ADDED touch-none here!
+  <div className="w-full h-32 cursor-pointer z-10 relative touch-none">
     <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 10, 5]} intensity={1.5} />
