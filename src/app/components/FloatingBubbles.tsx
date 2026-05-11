@@ -35,7 +35,7 @@ export function FloatingBubbles() {
        This pushes the bubbles to the absolute background so they 
        cannot interfere with touch events on your icons or buttons.
     */
-    <div className="fixed inset-0 pointer-events-none z-[-10] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {bubbles.map((bubble) => (
         <motion.div
           key={bubble.id}

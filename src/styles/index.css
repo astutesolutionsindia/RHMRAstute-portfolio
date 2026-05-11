@@ -2,59 +2,52 @@
 @import './tailwind.css';
 @import './theme.css';
 
-/* THE SCROLL UNLOCKER */
-html, body {
-  /* Force vertical scrolling to be active */
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  
-  /* Reset heights to allow the document to expand naturally */
-  height: auto !important;
-  min-height: 100% !important;
-  width: 100%;
-  
-  /* Critical: Tells mobile devices to allow vertical swiping */
-  touch-action: pan-y !important;
-  
-  -webkit-font-smoothing: antialiased;
-  position: relative;
+/* THE SCROLL UNLOCKER (Mobile-Safe Version) */
+html {
+  /* Prevent horizontal wobble, let vertical scroll happen naturally */
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
+body {
+  /* 1. We moved your background gradient here! */
+  background: linear-gradient(to bottom right, #ffffff, #ecfeff, #cffafe);
+  
+  /* 2. Prevent horizontal scroll */
+  overflow-x: hidden;
+  
+  /* 3. CRITICAL: Do NOT set 'overflow-y' or 'height: 100%' here. 
+     That is exactly what traps mobile browsers from scrolling. */
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  touch-action: pan-y;
+}
+
 #root {
-  /* Ensure the React entry point doesn't block height */
-  height: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-/* THE INTERACTION RESTORE */
+/* Ensure 3D canvases allow swiping */
 canvas {
-  /* Tells the 3D canvas: 'Let the user scroll up/down, 
-     but allow interaction for taps and side-swipes.' */
   touch-action: pan-y !important;
-  pointer-events: auto !important;
 }
 
-/* THE SHIELD BREAKER */
-/* Ensure background elements can NEVER block a touch */
+/* Ensure background elements NEVER block a touch */
 .pointer-events-none {
   pointer-events: none !important;
 }
 
-/* Fix for mobile viewports */
+/* Mobile Viewport Polish */
 @media (max-width: 768px) {
   html { font-size: 14px; }
   
   .container {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-    margin-left: auto;
-    margin-right: auto;
   }
   
-  /* Ensure no 3D container blocks the screen width */
   .canvas-container, canvas {
     max-width: 100vw !important;
   }
