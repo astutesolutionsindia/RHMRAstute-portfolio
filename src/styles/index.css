@@ -2,27 +2,44 @@
 @import './tailwind.css';
 @import './theme.css';
 
-/* Global Polish: Prevent Horizontal Scroll completely */
+/* Global Polish: Prevent Horizontal Scroll & Enable Vertical Scroll */
 html, body {
-  overflow-x: hidden;
+  /* Restores vertical movement while keeping horizontal locked */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  
+  /* Critical for mobile: allows the browser to recognize swipe-to-scroll */
+  touch-action: pan-y !important;
+  
+  /* Reset height to ensure the document can expand */
+  height: auto !important;
+  min-height: 100%;
   width: 100%;
+  
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Ensures the React root doesn't trap the height of the document */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Surgical Mobile Polish */
 @media (max-width: 768px) {
-  /* Scales the entire site down slightly so nothing feels "too big" on mobile */
   html {
     font-size: 14px;
   }
   
-  /* Ensures 3D containers never push the screen wider than the phone */
+  /* Prevents 3D elements from intercepting touch-scroll gestures */
   canvas, .canvas-container {
     max-width: 100vw !important;
     overflow: hidden;
+    touch-action: pan-y !important;
   }
 
-  /* Centers your containers and prevents side-scrolling */
   .container {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
