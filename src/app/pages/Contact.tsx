@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'; // <--- Fixed import
+import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
 
@@ -12,17 +12,14 @@ export function Contact() {
     message: '',
   });
 
-  // New state to handle the success UI
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // 1. Add your Web3Forms access key here
     const apiKey = "27bf8094-e7a5-415f-8bb1-f0236af818fa"; 
 
     try {
-      // 2. Send the data to the Web3Forms API
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -31,18 +28,16 @@ export function Contact() {
         },
         body: JSON.stringify({
           access_key: apiKey,
-          subject: `New Project Inquiry from ${formData.name}`, // Sets the email subject
-          ...formData // Spreads all your form fields into the request
+          subject: `New Project Inquiry from ${formData.name}`,
+          ...formData
         }),
       });
 
       const result = await response.json();
 
-      // 3. If the email sent successfully, trigger the success animation!
       if (result.success) {
         setIsSubmitted(true);
         
-        // Reset the form after 5 seconds
         setTimeout(() => {
           setIsSubmitted(false);
           setFormData({ name: '', email: '', company: '', budget: '', projectType: '', message: '' });
@@ -67,7 +62,7 @@ export function Contact() {
   ];
 
   return (
-    <div className="pt-32 pb-20 overflow-x-hidden"> {/* Prevent horizontal scrolling */}
+    <div className="pt-32 pb-20"> {/* REMOVED: inline overflow-x-hidden (handled globally now) */}
       <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
@@ -75,7 +70,6 @@ export function Contact() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          {/* Scaled text for mobile */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent px-2">
             Let's Build Something Amazing
           </h1>
@@ -127,7 +121,6 @@ export function Contact() {
                     />
                   </div>
 
-                  {/* Stack dropdowns on mobile, side-by-side on desktop */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Budget Range</label>
@@ -230,7 +223,6 @@ export function Contact() {
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-r from-cyan-600 to-cyan-400 flex items-center justify-center shadow-lg shrink-0">
                       <info.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </div>
-                    {/* truncate class ensures long emails don't break the layout on small screens */}
                     <div className="min-w-0 flex-1"> 
                       <div className="text-xs md:text-sm text-gray-500">{info.label}</div>
                       <div className="font-semibold text-gray-800 text-sm md:text-base truncate">{info.value}</div>
@@ -268,7 +260,6 @@ export function Contact() {
           viewport={{ once: true }}
           className="p-3 md:p-4 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
         >
-          {/* Adjusted height for mobile screens */}
           <div className="w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden relative">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105952.17937409214!2d74.7925184288825!3d34.08638059082596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f98f987f62d%3A0x673db2f2eb68095b!2sSrinagar%2C%20Jammu%20and%20Kashmir!5e0!3m2!1sen!2sin!4v1715694205562!5m2!1sen!2sin" 

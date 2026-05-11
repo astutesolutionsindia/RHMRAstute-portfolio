@@ -8,7 +8,7 @@ import {
   ECommerceIcon, 
   WebAppIcon 
 } from '../components/Service3DIcons';
-import { motion } from 'framer-motion'; // <--- Fixed import for consistency
+import { motion } from 'framer-motion'; 
 import { Code2, Smartphone, Database, Cloud, Brain, Palette, ShoppingCart, Settings } from 'lucide-react';
 
 export function Services() {
@@ -64,7 +64,7 @@ export function Services() {
   ];
 
   return (
-    <div className="pt-32 pb-20 overflow-x-hidden"> {/* Prevent horizontal scrolling */}
+    <div className="pt-32 pb-20"> {/* REMOVED: inline overflow-x-hidden */}
       <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
@@ -72,7 +72,6 @@ export function Services() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16 md:mb-20"
         >
-          {/* Scaled heading for mobile */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent px-2">
             Our Software Development Services
           </h1>
@@ -82,7 +81,8 @@ export function Services() {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-20">
+        {/* ADDED: justify-items-center */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-20 justify-items-center">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -91,10 +91,14 @@ export function Services() {
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-100 hover:border-cyan-300 transition-all flex flex-col items-center md:items-start text-center md:text-left"
+              /* ADDED: w-full max-w-[500px] to constrain width and prevent layout breaks */
+              className="w-full max-w-[500px] p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-100 hover:border-cyan-300 transition-all flex flex-col items-center md:items-start text-center md:text-left"
             >
-              {/* --- 3D Icon Switchboard Injected Here --- */}
-              <div className="-mt-6 mb-2 flex justify-center w-full md:justify-start">
+              {/* ADDED: touchAction: 'pan-y' so users can swipe vertically past the 3D icons */}
+              <div 
+                className="-mt-6 mb-2 flex justify-center w-full md:justify-start"
+                style={{ touchAction: 'pan-y' }}
+              >
                 {service.title === 'Custom Software Development' ? (
                   <CustomSoftwareIcon />
                 ) : service.title === 'Mobile App Development' ? (

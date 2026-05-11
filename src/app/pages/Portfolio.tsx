@@ -1,5 +1,5 @@
 import { GovContractorIcon } from '../components/Portfolio3DIcons';
-import { motion } from 'framer-motion'; // <--- Fixed import for consistency
+import { motion } from 'framer-motion'; 
 import { ExternalLink } from 'lucide-react';
 
 export function Portfolio() {
@@ -12,7 +12,7 @@ export function Portfolio() {
       challenges: 'Complex compliance requirements and multi-role access control',
       results: 'Reduced administrative overhead by 60% and improved compliance tracking',
       color: 'from-blue-600 to-cyan-600',
-      link: '#' // <-- Update this when the app is live!
+      link: '#' 
     },
     {
       name: 'MSGCPPL.com (ERP)',
@@ -22,7 +22,7 @@ export function Portfolio() {
       challenges: 'Integration of multiple legacy systems and real-time data synchronization',
       results: 'Unified 5 separate systems into one platform, saving 40% operational costs',
       color: 'from-cyan-600 to-teal-600',
-      link: 'https://msgcppl.com' // <-- Added your live domain here
+      link: 'https://msgcppl.com' 
     },
     {
       name: 'iDrive Institute Management',
@@ -32,14 +32,14 @@ export function Portfolio() {
       challenges: 'Real-time scheduling conflicts and automated certificate compliance',
       results: 'Improved scheduling efficiency by 75% and automated 90% of paperwork',
       color: 'from-teal-600 to-cyan-600',
-      link: '#' // <-- Update this when the platform is live!
+      link: '#' 
     },
   ];
 
   const categories = ['All', 'Web Apps', 'Mobile Apps', 'ERP Systems', 'E-Commerce'];
 
   return (
-    <div className="pt-32 pb-20 overflow-x-hidden"> {/* Prevent horizontal scrolling */}
+    <div className="pt-32 pb-20"> {/* Removed inline overflow-x-hidden as we handle it globally now */}
       <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
@@ -47,7 +47,6 @@ export function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          {/* Scaled text for mobile */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent px-2">
             Our Work Speaks Through Innovation
           </h1>
@@ -90,23 +89,22 @@ export function Portfolio() {
                 {/* Project Logo & Info */}
                 <div className="lg:col-span-1 text-center lg:text-left">
                   
-                  {/* --- Static Logos with CSS Hover Effects --- */}
                   <div className="mb-6 h-28 flex items-center justify-center lg:justify-start">
                     {project.name === 'MSGCPPL.com (ERP)' ? (
                       <img 
-                        src="/msgcppl-logo.jpg" /* <-- Re-applied clean Vercel path */
+                        src="/msgcppl-logo.jpg" 
                         alt="MSGCPPL Logo" 
                         className="w-24 h-24 object-contain rounded-full shadow-md transition-transform duration-300 hover:scale-110 hover:shadow-xl cursor-pointer"
                       />
                     ) : project.name === 'iDrive Institute Management' ? (
                       <img 
-                        src="/idrive-logo.jpg" /* <-- Re-applied clean Vercel path */
+                        src="/idrive-logo.jpg" 
                         alt="iDrive Logo" 
                         className="w-28 h-28 object-contain transition-transform duration-300 hover:scale-110 drop-shadow-md hover:drop-shadow-xl cursor-pointer"
                       />
                     ) : (
-                      // Fallback Placeholder for Gov App
-                      <div className="w-full flex justify-center lg:justify-start">
+                      // ADDED: touchAction: 'pan-y' for 3D Icon scroll safety
+                      <div className="w-full flex justify-center lg:justify-start" style={{ touchAction: 'pan-y' }}>
                          <GovContractorIcon />
                       </div>
                     )}

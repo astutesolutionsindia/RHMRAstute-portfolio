@@ -6,7 +6,7 @@ import {
   ExcellenceIcon, 
   SuccessIcon 
 } from '../components/About3DIcons';
-import { motion } from 'framer-motion'; // <--- Changed from 'motion/react' for consistency
+import { motion } from 'framer-motion';
 import { Target, Eye, Award, Users, Lightbulb, Shield } from 'lucide-react';
 
 export function About() {
@@ -18,7 +18,7 @@ export function About() {
   ];
 
   return (
-    <div className="pt-32 pb-20 overflow-x-hidden"> {/* Added overflow-x-hidden to prevent horizontal scrolling on mobile */}
+    <div className="pt-32 pb-20 overflow-x-hidden">
       <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
@@ -26,11 +26,9 @@ export function About() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16 md:mb-20"
         >
-          {/* Scaled heading for mobile */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent px-2">
             Innovating Digital Excellence
           </h1>
-          {/* Scaled paragraph for mobile */}
           <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             RHMR Astute Solutions India is a technology-driven software development company
             focused on creating scalable, secure, and intelligent digital solutions for
@@ -39,16 +37,18 @@ export function About() {
         </motion.div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16 md:mb-20">
+        {/* ADDED: justify-items-center to perfectly center the mission/vision cards on mobile */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16 md:mb-20 justify-items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, y: -5 }}
-            className="p-8 md:p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
+            /* ADDED: w-full max-w-[500px] to control width and prevent layout breaks */
+            className="w-full max-w-[500px] p-8 md:p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
           >
-            {/* 3D Mission Icon injected here */}
-            <div className="-mt-8 mb-2 flex justify-center w-full">
+            {/* ADDED: touchAction: 'pan-y' so users can swipe vertically past the 3D icons */}
+            <div className="-mt-8 mb-2 flex justify-center w-full" style={{ touchAction: 'pan-y' }}>
               <MissionIcon />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800 text-center md:text-left">Our Mission</h2>
@@ -63,10 +63,11 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, y: -5 }}
-            className="p-8 md:p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
+            /* ADDED: w-full max-w-[500px] */
+            className="w-full max-w-[500px] p-8 md:p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
           >
-            {/* 3D Vision Icon injected here */}
-            <div className="-mt-8 mb-2 flex justify-center w-full">
+            {/* ADDED: touchAction: 'pan-y' */}
+            <div className="-mt-8 mb-2 flex justify-center w-full" style={{ touchAction: 'pan-y' }}>
               <VisionIcon />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800 text-center md:text-left">Our Vision</h2>
@@ -84,12 +85,11 @@ export function About() {
           viewport={{ once: true }}
           className="mb-16 md:mb-20"
         >
-          {/* Scaled heading for mobile */}
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
             Core Values
           </h2>
-          {/* Ensure grid falls back to 1 column on smallest screens, 2 on medium, 4 on large */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* ADDED: justify-items-center to perfectly center the value cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
             {values.map((value, index) => (
               <motion.div
                 key={index}
@@ -98,10 +98,14 @@ export function About() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl text-center border border-cyan-100 hover:border-cyan-300 transition-all flex flex-col items-center"
+                /* ADDED: w-full max-w-[340px] to ensure cards don't stretch too wide on mobile */
+                className="w-full max-w-[340px] p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl text-center border border-cyan-100 hover:border-cyan-300 transition-all flex flex-col items-center"
               >
-                {/* 3D Core Value Icons switchboard injected here */}
-                <div className="-mt-6 mb-2 w-full flex justify-center overflow-hidden max-w-[150px]">
+                {/* ADDED: touchAction: 'pan-y' for all 3D icons here as well */}
+                <div 
+                  className="-mt-6 mb-2 w-full flex justify-center overflow-hidden max-w-[150px]"
+                  style={{ touchAction: 'pan-y' }}
+                >
                   {value.title === 'Innovation' ? (
                     <InnovationIcon />
                   ) : value.title === 'Integrity' ? (
@@ -128,7 +132,6 @@ export function About() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto p-8 md:p-12 bg-gradient-to-br from-white/80 to-cyan-50/80 backdrop-blur-sm rounded-3xl shadow-2xl mx-4 md:mx-auto"
         >
-          {/* Scaled heading for mobile */}
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
             Our Story
           </h2>
