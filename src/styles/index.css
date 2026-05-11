@@ -2,53 +2,34 @@
 @import './tailwind.css';
 @import './theme.css';
 
-/* THE SCROLL UNLOCKER (Mobile-Safe Version) */
+/* THE NAKED SCROLL TEST */
 html {
-  /* Prevent horizontal wobble, let vertical scroll happen naturally */
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  background-color: #ffffff;
 }
 
 body {
-  /* 1. We moved your background gradient here! */
+  /* No overflow rules here! */
+  margin: 0;
+  padding: 0;
   background: linear-gradient(to bottom right, #ffffff, #ecfeff, #cffafe);
-  
-  /* 2. Prevent horizontal scroll */
-  overflow-x: hidden;
-  
-  /* 3. CRITICAL: Do NOT set 'overflow-y' or 'height: 100%' here. 
-     That is exactly what traps mobile browsers from scrolling. */
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  touch-action: pan-y;
 }
 
 #root {
+  /* No overflow rules here! */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Ensure 3D canvases allow swiping */
 canvas {
   touch-action: pan-y !important;
 }
 
-/* Ensure background elements NEVER block a touch */
 .pointer-events-none {
   pointer-events: none !important;
 }
 
-/* Mobile Viewport Polish */
 @media (max-width: 768px) {
   html { font-size: 14px; }
-  
-  .container {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-  
-  .canvas-container, canvas {
-    max-width: 100vw !important;
-  }
+  .container { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
