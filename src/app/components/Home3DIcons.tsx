@@ -53,7 +53,7 @@ function MobilePhone() {
 
 export function MobileIconCanvas() {
   return (
-    <div className="w-full h-32 cursor-pointer z-10 relative touch-none">
+    <div className="w-full h-32 cursor-pointer z-10 relative touch-pan-y">
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
@@ -110,7 +110,7 @@ function ServerDisks() {
 
 export function ERPIconCanvas() {
   return (
-    <div className="w-full h-32 cursor-pointer z-10 relative touch-none">
+    <div className="w-full h-32 cursor-pointer z-10 relative touch-pan-y">
       <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
@@ -160,7 +160,7 @@ function DesktopMonitor() {
 
 export function WebIconCanvas() {
   return (
-    <div className="w-full h-32 cursor-pointer z-10 relative touch-none">
+    <div className="w-full h-32 cursor-pointer z-10 relative touch-pan-y">
       <Canvas camera={{ position: [0, 0, 6], fov: 45 }}><ambientLight intensity={0.6} /><directionalLight position={[5, 5, 5]} intensity={1} /><Float speed={2} rotationIntensity={0.2} floatIntensity={1}><DesktopMonitor /></Float><ContactShadows position={[0, -1.5, 0]} opacity={0.3} scale={5} blur={1.5} /></Canvas>
     </div>
   );
@@ -198,7 +198,7 @@ function FloatingCloud() {
 
 export function CloudIconCanvas() {
   return (
-    <div className="w-full h-32 cursor-pointer z-10 relative touch-none">
+    <div className="w-full h-32 cursor-pointer z-10 relative touch-pan-y">
       <Canvas camera={{ position: [0, 0, 6], fov: 45 }}><ambientLight intensity={0.8} /><directionalLight position={[5, 5, 5]} intensity={1} /><Float speed={2} rotationIntensity={0.4} floatIntensity={2}><FloatingCloud /></Float><ContactShadows position={[0, -1.5, 0]} opacity={0.3} scale={5} blur={1.5} /></Canvas>
     </div>
   );
@@ -241,7 +241,7 @@ function NeuralCore() {
 
 export function AIIconCanvas() {
   return (
-    <div className="w-full h-32 cursor-pointer z-10 relative touch-none">
+    <div className="w-full h-32 cursor-pointer z-10 relative touch-pan-y">
       <Canvas camera={{ position: [0, 0, 6], fov: 45 }}><ambientLight intensity={0.5} /><directionalLight position={[5, 5, 5]} intensity={1} /><Float speed={2} rotationIntensity={0.5} floatIntensity={1}><NeuralCore /></Float><ContactShadows position={[0, -1.8, 0]} opacity={0.3} scale={5} blur={1.5} /></Canvas>
     </div>
   );
@@ -289,7 +289,7 @@ function ModularCubes() {
 
 export function SoftwareIconCanvas() {
   return (
-    <div className="w-full h-32 cursor-pointer z-10 relative touch-none">
+    <div className="w-full h-32 cursor-pointer z-10 relative touch-pan-y">
       <Canvas camera={{ position: [0, 0, 6], fov: 45 }}><ambientLight intensity={0.6} /><directionalLight position={[5, 5, 5]} intensity={1} /><Float speed={1.5} rotationIntensity={1} floatIntensity={1}><ModularCubes /></Float><ContactShadows position={[0, -2, 0]} opacity={0.3} scale={5} blur={1.5} /></Canvas>
     </div>
   );

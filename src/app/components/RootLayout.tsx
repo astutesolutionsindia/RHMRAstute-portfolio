@@ -6,22 +6,22 @@ import { Footer } from './Footer';
 
 export function RootLayout() {
   return (
-    /* We use overflow-x-hidden to prevent horizontal glitches, 
-       but we ensure vertical scrolling is NOT blocked.
+    /* flex and flex-col: Combined with min-h-screen, this ensures the 
+       Footer stays at the bottom of the viewport on short pages.
     */
-    <div className="relative min-h-screen overflow-x-hidden overflow-y-auto w-full bg-gradient-to-br from-white via-cyan-50 to-cyan-100">
+    <div className="relative min-h-screen flex flex-col overflow-x-hidden w-full bg-gradient-to-br from-white via-cyan-50 to-cyan-100">
       
-      {/* Background elements - Ensure they have pointer-events-none in their own files! */}
+      {/* Background Decorations */}
       <FloatingBubbles />
       <CursorFollower />
       
       <Navigation />
       
-      {/* z-10 ensures the content is above bubbles.
-         We removed any 'inset-0' or 'fixed' from the main tag 
-         that might have been locking the view.
+      {/* flex-grow: This tells the main content area to take up all 
+          available space, pushing the Footer down.
+          z-10: Keeps content above background bubbles.
       */}
-      <main className="relative z-10 min-h-screen">
+      <main className="relative z-10 flex-grow">
         <Outlet />
       </main>
       

@@ -44,7 +44,7 @@ function GlassKnot() {
 export default function InteractiveGlass() {
   return (
     // Added touch-none here so mobile users can grab and spin the glass without scrolling the page!
-    <div className="absolute inset-[-100px] z-10 cursor-grab active:cursor-grabbing touch-none">
+    <div className="absolute inset-[-100px] z-10 cursor-grab active:cursor-grabbing touch-pan-y">
       <Canvas camera={{ position: [0, 0, 8.5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
