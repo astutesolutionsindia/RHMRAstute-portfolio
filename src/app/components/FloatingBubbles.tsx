@@ -31,7 +31,11 @@ export function FloatingBubbles() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    /* CRITICAL FIX: Changed z-0 to z-[-10]. 
+       This pushes the bubbles to the absolute background so they 
+       cannot interfere with touch events on your icons or buttons.
+    */
+    <div className="fixed inset-0 pointer-events-none z-[-10] overflow-hidden">
       {bubbles.map((bubble) => (
         <motion.div
           key={bubble.id}
@@ -44,6 +48,8 @@ export function FloatingBubbles() {
             background: `radial-gradient(circle at 30% 30%, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.05))`,
             border: '1px solid rgba(6, 182, 212, 0.2)',
             boxShadow: '0 8px 32px 0 rgba(6, 182, 212, 0.1)',
+            // Ensure individual bubbles don't capture pointers
+            pointerEvents: 'none',
           }}
           animate={{
             y: [0, -30, 0],

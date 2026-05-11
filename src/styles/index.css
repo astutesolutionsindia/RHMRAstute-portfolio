@@ -2,32 +2,57 @@
 @import './tailwind.css';
 @import './theme.css';
 
-/* Force the browser to recognize vertical scrolling */
+/* THE SCROLL UNLOCKER */
 html, body {
+  /* Force vertical scrolling to be active */
   overflow-y: auto !important;
   overflow-x: hidden !important;
+  
+  /* Reset heights to allow the document to expand naturally */
   height: auto !important;
-  min-height: 100%;
+  min-height: 100% !important;
   width: 100%;
+  
+  /* Critical: Tells mobile devices to allow vertical swiping */
   touch-action: pan-y !important;
+  
   -webkit-font-smoothing: antialiased;
+  position: relative;
   scroll-behavior: smooth;
 }
 
 #root {
+  /* Ensure the React entry point doesn't block height */
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Ensure the 3D canvas never blocks the scroll gesture */
+/* THE INTERACTION RESTORE */
 canvas {
+  /* Tells the 3D canvas: 'Let the user scroll up/down, 
+     but allow interaction for taps and side-swipes.' */
   touch-action: pan-y !important;
+  pointer-events: auto !important;
+}
+
+/* THE SHIELD BREAKER */
+/* Ensure background elements can NEVER block a touch */
+.pointer-events-none {
+  pointer-events: none !important;
 }
 
 /* Fix for mobile viewports */
 @media (max-width: 768px) {
   html { font-size: 14px; }
+  
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
   
   /* Ensure no 3D container blocks the screen width */
   .canvas-container, canvas {
