@@ -24,7 +24,8 @@ function GlassKnot() {
     >
       <torusKnotGeometry args={[1.2, 0.4, 256, 64]} />
       <meshPhysicalMaterial 
-        color={hovered ? "#0891b2" : "#a5f3fc"}
+        /* Changed the default color from #a5f3fc (pale/white) to #7dd3fc (glassy blue) */
+        color={hovered ? "#0891b2" : "#7dd3fc"}
         transmission={0.85}
         roughness={0.15}
         thickness={2} 
@@ -38,17 +39,14 @@ function GlassKnot() {
 
 export default function InteractiveGlass() {
   return (
-    /* 1. Changed inset-[-100px] to inset-0 to stop it from covering the text/buttons */
     <div className="absolute inset-0 z-10 cursor-grab active:cursor-grabbing">
       <Canvas 
         camera={{ position: [0, 0, 8.5], fov: 45 }}
-        /* 2. Allows vertical scrolling while keeping the 3D active */
         style={{ touchAction: 'pan-y' }}
       >
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         
-        {/* 3. Removed 'global'! Now rotation only happens if you touch the object area. */}
         <PresentationControls 
           global={false} 
           rotation={[0, 0.3, 0]} 
