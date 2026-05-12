@@ -12,7 +12,7 @@ export function Portfolio() {
       challenges: 'Complex compliance requirements and multi-role access control',
       results: 'Reduced administrative overhead by 60% and improved compliance tracking',
       color: 'from-blue-600 to-cyan-600',
-      link: '#' 
+      link: 'https://your-gov-app-link.com' // <-- Replace with the real Gov App URL
     },
     {
       name: 'MSGCPPL.com (ERP)',
@@ -32,14 +32,14 @@ export function Portfolio() {
       challenges: 'Real-time scheduling conflicts and automated certificate compliance',
       results: 'Improved scheduling efficiency by 75% and automated 90% of paperwork',
       color: 'from-teal-600 to-cyan-600',
-      link: '#' 
+      link: 'https://your-idrive-link.com' // <-- Replace with the real iDrive URL
     },
   ];
 
   const categories = ['All', 'Web Apps', 'Mobile Apps', 'ERP Systems', 'E-Commerce'];
 
   return (
-    <div className="pt-32 pb-20"> {/* Removed inline overflow-x-hidden as we handle it globally now */}
+    <div className="pt-32 pb-20">
       <div className="container mx-auto px-4 md:px-6">
         {/* Hero */}
         <motion.div
@@ -90,24 +90,31 @@ export function Portfolio() {
                 <div className="lg:col-span-1 text-center lg:text-left">
                   
                   <div className="mb-6 h-28 flex items-center justify-center lg:justify-start">
-                    {project.name === 'MSGCPPL.com (ERP)' ? (
-                      <img 
-                        src="/msgcppl-logo.jpg" 
-                        alt="MSGCPPL Logo" 
-                        className="w-24 h-24 object-contain rounded-full shadow-md transition-transform duration-300 hover:scale-110 hover:shadow-xl cursor-pointer"
-                      />
-                    ) : project.name === 'iDrive Institute Management' ? (
-                      <img 
-                        src="/idrive-logo.jpg" 
-                        alt="iDrive Logo" 
-                        className="w-28 h-28 object-contain transition-transform duration-300 hover:scale-110 drop-shadow-md hover:drop-shadow-xl cursor-pointer"
-                      />
-                    ) : (
-                      // ADDED: touchAction: 'pan-y' for 3D Icon scroll safety
-                      <div className="w-full flex justify-center lg:justify-start" style={{ touchAction: 'pan-y' }}>
-                         <GovContractorIcon />
-                      </div>
-                    )}
+                    {/* The Clickable Logo Wrapper */}
+                    <a 
+                      href={project.link !== 'https://contractor-frontend.onrender.com/' ? project.link : undefined}
+                      target={project.link !== 'https://contractor-frontend.onrender.com/' ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className={`block transition-transform duration-300 hover:scale-110 ${project.link !== 'https://contractor-frontend.onrender.com/' ? 'cursor-pointer' : 'cursor-default'}`}
+                    >
+                      {project.name === 'MSGCPPL.com (ERP)' ? (
+                        <img 
+                          src="/msgcppl-logo.jpg" /* <-- Updated to .png for the new logo */
+                          alt="MSGCPPL Logo" 
+                          className="w-24 h-24 object-contain rounded-full shadow-md hover:shadow-xl"
+                        />
+                      ) : project.name === 'iDrive Institute Management' ? (
+                        <img 
+                          src="/idrive-logo.jpg" 
+                          alt="iDrive Logo" 
+                          className="w-28 h-28 object-contain drop-shadow-md hover:drop-shadow-xl"
+                        />
+                      ) : (
+                        <div className="w-full flex justify-center lg:justify-start" style={{ touchAction: 'pan-y' }}>
+                           <GovContractorIcon />
+                        </div>
+                      )}
+                    </a>
                   </div>
 
                   <h3 className="text-2xl md:text-3xl font-bold mb-2 text-gray-800">{project.name}</h3>
