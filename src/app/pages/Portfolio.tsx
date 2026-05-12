@@ -12,7 +12,7 @@ export function Portfolio() {
       challenges: 'Complex compliance requirements and multi-role access control',
       results: 'Reduced administrative overhead by 60% and improved compliance tracking',
       color: 'from-blue-600 to-cyan-600',
-      link: 'https://your-gov-app-link.com' // <-- Replace with the real Gov App URL
+      link: 'https://contractor-frontend.onrender.com/' // <-- Real URL added
     },
     {
       name: 'MSGCPPL.com (ERP)',
@@ -32,7 +32,7 @@ export function Portfolio() {
       challenges: 'Real-time scheduling conflicts and automated certificate compliance',
       results: 'Improved scheduling efficiency by 75% and automated 90% of paperwork',
       color: 'from-teal-600 to-cyan-600',
-      link: 'https://your-idrive-link.com' // <-- Replace with the real iDrive URL
+      link: 'https://idrivedrivinginstitute.com/' // <-- Real URL added
     },
   ];
 
@@ -90,16 +90,16 @@ export function Portfolio() {
                 <div className="lg:col-span-1 text-center lg:text-left">
                   
                   <div className="mb-6 h-28 flex items-center justify-center lg:justify-start">
-                    {/* The Clickable Logo Wrapper */}
+                    {/* FIXED: Removed the confusing conditions. It just uses the link now! */}
                     <a 
-                      href={project.link !== 'https://contractor-frontend.onrender.com/' ? project.link : undefined}
-                      target={project.link !== 'https://contractor-frontend.onrender.com/' ? "_blank" : undefined}
+                      href={project.link}
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className={`block transition-transform duration-300 hover:scale-110 ${project.link !== 'https://contractor-frontend.onrender.com/' ? 'cursor-pointer' : 'cursor-default'}`}
+                      className="block transition-transform duration-300 hover:scale-110 cursor-pointer"
                     >
                       {project.name === 'MSGCPPL.com (ERP)' ? (
                         <img 
-                          src="/msgcppl-logo.jpg" /* <-- Updated to .png for the new logo */
+                          src="/msgcppl-logo.jpg" 
                           alt="MSGCPPL Logo" 
                           className="w-24 h-24 object-contain rounded-full shadow-md hover:shadow-xl"
                         />
