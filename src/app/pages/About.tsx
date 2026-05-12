@@ -18,8 +18,9 @@ export function About() {
   ];
 
   return (
-    <div className="pt-32 pb-20 overflow-x-hidden">
+    <div className="pt-32 pb-20"> {/* FIXED: Removed overflow-x-hidden to protect iOS scrolling */}
       <div className="container mx-auto px-4 md:px-6">
+        
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -37,17 +38,16 @@ export function About() {
         </motion.div>
 
         {/* Mission & Vision */}
-        {/* ADDED: justify-items-center to perfectly center the mission/vision cards on mobile */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16 md:mb-20 justify-items-center">
+        {/* FIXED: Added explicit grid-cols-1 so mobile knows exactly how to center the grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-20 justify-items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, y: -5 }}
-            /* ADDED: w-full max-w-[500px] to control width and prevent layout breaks */
-            className="w-full max-w-[500px] p-8 md:p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
+            /* FIXED: Added mx-auto as a bulletproof mobile centering fallback */
+            className="w-full max-w-[500px] mx-auto p-8 md:p-10 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
           >
-            {/* ADDED: touchAction: 'pan-y' so users can swipe vertically past the 3D icons */}
             <div className="-mt-8 mb-2 flex justify-center w-full" style={{ touchAction: 'pan-y' }}>
               <MissionIcon />
             </div>
@@ -63,10 +63,9 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02, y: -5 }}
-            /* ADDED: w-full max-w-[500px] */
-            className="w-full max-w-[500px] p-8 md:p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
+            /* FIXED: Added mx-auto */
+            className="w-full max-w-[500px] mx-auto p-8 md:p-10 bg-gradient-to-br from-cyan-50/80 to-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-200"
           >
-            {/* ADDED: touchAction: 'pan-y' */}
             <div className="-mt-8 mb-2 flex justify-center w-full" style={{ touchAction: 'pan-y' }}>
               <VisionIcon />
             </div>
@@ -88,7 +87,6 @@ export function About() {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
             Core Values
           </h2>
-          {/* ADDED: justify-items-center to perfectly center the value cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
             {values.map((value, index) => (
               <motion.div
@@ -98,10 +96,9 @@ export function About() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                /* ADDED: w-full max-w-[340px] to ensure cards don't stretch too wide on mobile */
-                className="w-full max-w-[340px] p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl text-center border border-cyan-100 hover:border-cyan-300 transition-all flex flex-col items-center"
+                /* FIXED: Added mx-auto for absolute center alignment on small screens */
+                className="w-full max-w-[340px] mx-auto p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl text-center border border-cyan-100 hover:border-cyan-300 transition-all flex flex-col items-center"
               >
-                {/* ADDED: touchAction: 'pan-y' for all 3D icons here as well */}
                 <div 
                   className="-mt-6 mb-2 w-full flex justify-center overflow-hidden max-w-[150px]"
                   style={{ touchAction: 'pan-y' }}
@@ -130,7 +127,8 @@ export function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto p-8 md:p-12 bg-gradient-to-br from-white/80 to-cyan-50/80 backdrop-blur-sm rounded-3xl shadow-2xl mx-4 md:mx-auto"
+          /* FIXED: Removed the conflicting `mx-4` class. `mx-auto` handles it perfectly now. */
+          className="max-w-4xl mx-auto p-8 md:p-12 bg-gradient-to-br from-white/80 to-cyan-50/80 backdrop-blur-sm rounded-3xl shadow-2xl"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
             Our Story
@@ -154,6 +152,7 @@ export function About() {
             </p>
           </div>
         </motion.div>
+
       </div>
     </div>
   );
