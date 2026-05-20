@@ -12,7 +12,7 @@ export function Portfolio() {
       challenges: 'Complex compliance requirements and multi-role access control',
       results: 'Reduced administrative overhead by 60% and improved compliance tracking',
       color: 'from-blue-600 to-cyan-600',
-      link: 'https://thecontractorapp.com/' // <-- Real URL added
+      link: 'https://thecontractorapp.in/' // <-- Real URL added
     },
     {
       name: 'MSGCPPL.com (ERP)',
