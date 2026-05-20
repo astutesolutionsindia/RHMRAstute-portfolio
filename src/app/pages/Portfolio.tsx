@@ -5,14 +5,14 @@ import { ExternalLink } from 'lucide-react';
 export function Portfolio() {
   const projects = [
     {
-      name: 'Government Contractor App',
+      name: 'The Contractor App',
       category: 'Web Application',
       description: 'A comprehensive contractor management system designed for government projects with features including bid management, project tracking, compliance monitoring, and financial reporting.',
       technologies: ['React', 'Node.js', 'MongoDB', 'AWS'],
       challenges: 'Complex compliance requirements and multi-role access control',
       results: 'Reduced administrative overhead by 60% and improved compliance tracking',
       color: 'from-blue-600 to-cyan-600',
-      link: 'https://contractor-frontend.onrender.com/' // <-- Real URL added
+      link: 'https://thecontractorapp.com/' // <-- Real URL added
     },
     {
       name: 'MSGCPPL.com (ERP)',
